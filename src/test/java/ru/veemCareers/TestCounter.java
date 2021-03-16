@@ -1,12 +1,17 @@
 package ru.veemCareers;
 
-import java.util.*;
+import java.util.List;
+
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 public class TestCounter {
@@ -18,7 +23,7 @@ public class TestCounter {
 
         WebDriver driver = new ChromeDriver();
 
-        // driver.manage().window().maximaze();
+        //driver.manage().window().maximaze();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -26,19 +31,19 @@ public class TestCounter {
 
         List <WebElement> selectSelect = driver.findElements(By.id("sl"));
 
-        //System.out.println(selectSelect.size());
+        selectSelect.get(0).click();
 
-        Select selectVacancy = new Select(selectSelect.get(0));
+        WebElement raproinMenu  = driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/a[2]"));
 
-        selectVacancy.selectByVisibleText("Разработка продуктов");
+        raproinMenu.click();
 
-        Select selectLanguage = new Select(selectSelect.get(1));
+        selectSelect.get(1).click();
 
-        selectLanguage.selectByVisibleText("Английский");
+        driver.findElement(By.xpath("//*[@id=\"lang-option-1\"]")).click();
 
-        List <WebElement> countVacancy = driver.findElements(By.className("card card-no-hover card-sm"));
+        List <WebElement> countVacancy = driver.findElements(By.xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/a"));
 
-        // System.out.println(countVacancy.size());
+        System.out.println(countVacancy.size());
 
         driver.quit();
     }
